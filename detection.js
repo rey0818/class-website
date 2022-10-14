@@ -4,5 +4,5 @@ window.mobileAndTabletCheck = function() {
     return check;
 };
 
-if(mobileAndTabletCheck()) window.location.href = "./mobile.html";
-else window.location.href = "./computer.html";
+if(mobileAndTabletCheck()) window.location.href = "./phoneindex.html";
+else window.location.href = "./computerindex.html";

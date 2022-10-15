@@ -6,7 +6,15 @@ const ctx = canvas.getContext("2d");
 const bgctx = backgroundcanvas.getContext("2d");
 const solid = ['#', 'b'];
 const links = ['w', 'x', 'y', 'z'];
-
+const pagehtml = document.createElement("div");
+pagehtml.classList.add("page");
+pagehtml.innerHTML = '<button class="page-bg-bt" onclick="hidepage()"></button><div class="page-content"><div class="page-text"></div></div><button class="page-ex-bt" onclick="hidepage()"><object data="x.svg" class="x-svg svg" id="x-svg"></object></button>';
+const pages = [
+    "Hello page 1",
+    "Hello page 2",
+    "Hello page 3",
+    "Hello page 4",
+]
 const tiles = [
     ".............................................",
     ".............................................",
@@ -38,8 +46,9 @@ let tw = innerWidth / tws, th = innerHeight / ths;
 const speed = 15;
 let dkd = false, akd = false, wkd = false;
 let inair = false;
+let link = -1;
 let prevt = 0;
-let px = 100, py = 100, pw = tw * 1.5, ph = th * 1.5;
+let px = canvas.width/20, py = canvas.height/20*17, pw = tw * 1.5, ph = th * 1.5;
 let pvx = 0, pvy = 0;
 let player = new Image();
 player.src = "./Object.png";
@@ -114,6 +123,24 @@ function update(time){
     tpositions.forEach(e => {
         if(solid.includes(tiles[e[5]][e[4]]))
             [px, py, pvx, pvy] = collision(px, py, pw, ph, e[0], e[1], e[2], e[3], pvx, pvy);
+        if(links.includes(tiles[e[5]][e[4]]) && touching(px, py, pw, ph, e[0], e[1], e[2], e[3])){
+            switch (tiles[e[5]][e[4]]){
+                case 'w':
+                    link = 1;
+                    break;
+                case 'x':
+                    link = 2;
+                    break;
+                case 'y':
+                    link = 3;
+                    break;
+                case 'z':
+                    link = 4;
+                    break;
+                default:
+                    break;
+            }
+        }
     });
 
     if(pvy===0&&tempvy>=0)inair = false;
@@ -125,6 +152,20 @@ function update(time){
     }
     if(dkd)pvx=15;else if(akd) pvx=-15; else pvx=0;
     ctx.drawImage(player, px, py, pw, ph);
+    if(link===-1 || inair===true) requestAnimationFrame(update);
+    else requestAnimationFrame(showpage);
+}
+
+function showpage(){
+    document.body.appendChild(pagehtml);
+    pvx = 0;
+    document.querySelector(".page-text").innerHTML = pages[link-1]
+}
+
+function hidepage(){
+    document.querySelector(".page").remove();
+    link = -1;
+    prevt = 0;
     requestAnimationFrame(update);
 }
 
@@ -135,6 +176,10 @@ function gettile(x, y){
     let tileh = Math.floor(y/th+1)*th-tiley;
     
     return [tilex, tiley, tilew, tileh, Math.floor(x/tw), Math.floor(y/th)];
+}
+
+function touching(x, y, w, h, tx, ty, tw, th){
+    return x+w>tx&&x<tx+tw&&y+h>ty&&y<ty+th;
 }
 
 function collision(x, y, w, h, tx, ty, tw, th, vx, vy){

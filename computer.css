@@ -1,0 +1,72 @@
+body{
+    margin: 0;
+    overflow: hidden;
+}
+.maincanvas{
+    position: absolute;
+    z-index: 1;
+}
+.bgimg{
+    position: absolute;
+    z-index: 0;
+}
+.page{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+.page-bg-bt{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.page-content{
+    position: absolute;
+    width: 80vw;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 1vmax;
+}
+
+.page-text{
+    background-color: transparent;
+    color: black;
+    position: absolute;
+    margin: 3vmax;
+}
+
+.page-ex-bt{
+    position: absolute;
+    top: calc(10vh + 2vmax);
+    right: calc(10vw + 2vmax);
+    width: 3vmax;
+    height: 3vmax;
+    background-color: rgb(170, 170, 170);
+    border: none;
+    outline: none;
+    border-radius: 3vmax;
+}
+
+.page-ex-bt:hover{
+    background-color: rgb(140, 140, 140);
+}
+
+
+.page-ex-bt:active{
+    background-color: rgb(100, 100, 100);
+}
+
+.x-svg{
+    position: absolute;
+    width: 1.5vmax;
+    height: 1.5vmax;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}

@@ -5,7 +5,7 @@ document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
 const bgctx = backgroundcanvas.getContext("2d");
 const solid = ['#', 'b'];
-const links = ['w', 'x', 'y', 'z'];
+const links = ['1', '2', '3', '4'];
 const pagehtml = document.createElement("div");
 pagehtml.classList.add("page");
 pagehtml.innerHTML = '<button class="page-bg-bt" onclick="hidepage()"></button><div class="page-content"><div class="page-text"></div></div><button class="page-ex-bt" onclick="hidepage()"><object data="x.svg" class="x-svg svg" id="x-svg"></object></button>';
@@ -18,9 +18,9 @@ const pages = [
 const tiles = [
     ".............................................",
     ".............................................",
-    "......................................zzz....",
-    "......................................zzz....",
-    "......................................zzz....",
+    "......................................444....",
+    "......................................444....",
+    "......................................444....",
     ".............................................",
     ".............................................",
     ".............................................",
@@ -28,9 +28,9 @@ const tiles = [
     ".............................................",
     ".............................................",
     "..........................................bbb",
-    ".....www.......xxx.......yyy.................",
-    ".....www.......xxx.......yyy.................",
-    ".....www.......xxx.......yyy.......bbb.......",
+    ".....111.......222.......333.................",
+    ".....111.......222.......333.................",
+    ".....111.......222.......333.......bbb.......",
     ".............................................",
     ".............................................",
     "..........................................bbb",
@@ -65,22 +65,28 @@ function renderbackground(){
                 bgctx.fillStyle = "rgb(100, 255, 100)";
                 bgctx.fillRect(Math.floor(j*tw), Math.floor(i*th), Math.floor((j+1)*tw) - Math.floor(j*tw), Math.floor((i+1)*th) - Math.floor(i*th));
             }
-            if(tiles[i][j] === 'b'){
+            else if(tiles[i][j] === 'b'){
                 bgctx.fillStyle = "rgb(100, 100, 0)";
                 bgctx.fillRect(Math.floor(j*tw), Math.floor(i*th), Math.floor((j+1)*tw) - Math.floor(j*tw), Math.floor((i+1)*th) - Math.floor(i*th));
             }
-            if(links.includes(tiles[i][j])){
-                bgctx.fillStyle = "rgb(150, 150, 150)";
+            else if(links.includes(tiles[i][j])){
+                if(link.toString()==tiles[i][j])
+                    bgctx.fillStyle = "rgb(255, 255, 0)";
+                else
+                    bgctx.fillStyle = "rgb(150, 150, 150)";
                 bgctx.fillRect(Math.floor(j*tw), Math.floor(i*th), Math.floor((j+1)*tw) - Math.floor(j*tw), Math.floor((i+1)*th) - Math.floor(i*th));
             }
         }
     }
+    if(document.body.querySelector(".bgimg")!==null)
+        document.body.querySelector(".bgimg").remove();
+    const bgimg = new Image();
+    bgimg.src = backgroundcanvas.toDataURL();
+    bgimg.classList.add("bgimg");
+    document.body.appendChild(bgimg);
 }
 renderbackground();
-const bgimg = new Image();
-bgimg.src = backgroundcanvas.toDataURL();
-bgimg.classList.add("bgimg");
-document.body.appendChild(bgimg);
+
 
 
 function update(time){
@@ -124,21 +130,10 @@ function update(time){
         if(solid.includes(tiles[e[5]][e[4]]))
             [px, py, pvx, pvy] = collision(px, py, pw, ph, e[0], e[1], e[2], e[3], pvx, pvy);
         if(links.includes(tiles[e[5]][e[4]]) && touching(px, py, pw, ph, e[0], e[1], e[2], e[3])){
-            switch (tiles[e[5]][e[4]]){
-                case 'w':
-                    link = 1;
-                    break;
-                case 'x':
-                    link = 2;
-                    break;
-                case 'y':
-                    link = 3;
-                    break;
-                case 'z':
-                    link = 4;
-                    break;
-                default:
-                    break;
+            let tlink = link;
+            link = parseInt(tiles[e[5]][e[4]]);
+            if(tlink.toString()!=tiles[e[5]][e[4]]){
+                renderbackground();
             }
         }
     });
@@ -166,6 +161,7 @@ function hidepage(){
     document.querySelector(".page").remove();
     link = -1;
     prevt = 0;
+    renderbackground();
     requestAnimationFrame(update);
 }
 

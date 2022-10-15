@@ -1,17 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-.headers{
+.header1{
     background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-background_23-2149116123.jpg?size=626&ext=jpg&ga=GA1.2.2065264971.1665804486);
     height:300px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
+/* .header3{
+    background-image: url(https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-63452.jpg?w=1380&t=st=1665815866~exp=1665816466~hmac=890bd38e0d90af644047af678088f7a6a42d7ac083c6bbe955a04cd1d15e3058://img.freepik.com/free-vector/flat-design-abstract-background_23-2149116123.jpg?size=626&ext=jpg&ga=GA1.2.2065264971.1665804486);
+    height:300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}*/
+.header2{
+    background-image: url(https://img.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg?size=626&ext=jpg&ga=GA1.2.2065264971.1665804486);
+    height:300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+h1{
+    font-weight: bold;
+    font-size:50px;
+}
 .object-fit-cover{
     object-fit: cover;
 }
 body{
 	/*line-height: 1.5;*/
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Poppins', 微軟正黑體, sans-serif;     
 }
 footers*{
 	margin:0;

@@ -24,12 +24,16 @@ h1{
     font-weight: bold;
     font-size:50px;
 }
+.card{
+	background-color: bisque;
+}
 .object-fit-cover{
     object-fit: cover;
 }
 body{
 	/*line-height: 1.5;*/
-	font-family: 'Poppins', 微軟正黑體, sans-serif;     
+	font-family: 'Poppins', 微軟正黑體, sans-serif;  
+	background-color: bisque;   
 }
 footers*{
 	margin:0;
@@ -129,7 +133,3 @@ ul{
     width: 100%;
 }
 }
-
-
-
-

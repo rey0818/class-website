@@ -46,6 +46,7 @@ let tw = innerWidth / tws, th = innerHeight / ths;
 const speed = 15;
 let dkd = false, akd = false, wkd = false;
 let inair = false;
+let tempx = false;
 let link = -1;
 let prevt = 0;
 let px = canvas.width/20, py = canvas.height/20*17, pw = tw * 1.5, ph = th * 1.5;
@@ -140,28 +141,30 @@ function update(time){
 
     if(pvy===0&&tempvy>=0)inair = false;
     else inair=true;
-
+    tempx = false;
     if(wkd&&!inair){
         pvy=-50;
         inair = true;
+        tempx = true;
     }
     if(dkd)pvx=15;else if(akd) pvx=-15; else pvx=0;
     ctx.drawImage(player, px, py, pw, ph);
-    if(link===-1 || inair===true) requestAnimationFrame(update);
-    else requestAnimationFrame(showpage);
+    if(link!==-1 && (inair===false || tempx === true)) requestAnimationFrame(showpage);
+    else requestAnimationFrame(update);
 }
 
 function showpage(){
     document.body.appendChild(pagehtml);
     pvx = 0;
+    pvy = 0;
     document.querySelector(".page-text").innerHTML = pages[link-1]
 }
 
 function hidepage(){
     document.querySelector(".page").remove();
     link = -1;
-    prevt = 0;
     renderbackground();
+    prevt = performance.now();
     requestAnimationFrame(update);
 }
 

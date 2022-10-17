@@ -24,6 +24,9 @@ h1{
     font-weight: bold;
     font-size:50px;
 }
+p{
+	font-size: large;
+}
 .card{
 	background-color: bisque;
 }

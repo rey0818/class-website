@@ -1,7 +1,12 @@
 const canvas = document.createElement("canvas");
 canvas.classList.add("maincanvas");
-const backgroundcanvas = document.createElement("canvas");
 document.body.appendChild(canvas);
+const flagcanvas = document.createElement("canvas");
+flagcanvas.classList.add("flagcanvas");
+document.body.appendChild(flagcanvas);
+const backgroundcanvas = document.createElement("canvas");
+backgroundcanvas.classList.add("bgimg");
+document.body.appendChild(backgroundcanvas);
 const ctx = canvas.getContext("2d");
 const bgctx = backgroundcanvas.getContext("2d");
 const solid = ['#', 'b'];
@@ -48,6 +53,7 @@ let dkd = false, akd = false, wkd = false;
 let inair = false;
 let tempx = false;
 let link = -1;
+let hoverlink = -1;
 let prevt = 0;
 let px = canvas.width/20, py = canvas.height/20*17, pw = tw * 1.5, ph = th * 1.5;
 let pvx = 0, pvy = 0;
@@ -79,16 +85,23 @@ function renderbackground(){
             }
         }
     }
-    if(document.body.querySelector(".bgimg")!==null)
-        document.body.querySelector(".bgimg").remove();
-    const bgimg = new Image();
-    bgimg.src = backgroundcanvas.toDataURL();
-    bgimg.classList.add("bgimg");
-    document.body.appendChild(bgimg);
 }
+
 renderbackground();
 
-
+function changebackground(e = link){
+    for(let i = 0; i < ths; i++){
+        for(let j = 0; j < tws; j++){
+            if(links.includes(tiles[i][j])){
+                if(e.toString()==tiles[i][j])
+                    bgctx.fillStyle = "rgb(255, 255, 0)";
+                else
+                    bgctx.fillStyle = "rgb(150, 150, 150)";
+                bgctx.fillRect(Math.floor(j*tw), Math.floor(i*th), Math.floor((j+1)*tw) - Math.floor(j*tw), Math.floor((i+1)*th) - Math.floor(i*th));
+            }
+        }
+    }
+}
 
 function update(time){
     let dt = time - prevt;
@@ -134,7 +147,7 @@ function update(time){
             let tlink = link;
             link = parseInt(tiles[e[5]][e[4]]);
             if(tlink.toString()!=tiles[e[5]][e[4]]){
-                renderbackground();
+                changebackground();
             }
         }
     });
@@ -163,7 +176,7 @@ function showpage(){
 function hidepage(){
     document.querySelector(".page").remove();
     link = -1;
-    renderbackground();
+    changebackground();
     prevt = performance.now();
     requestAnimationFrame(update);
 }
@@ -232,6 +245,29 @@ function resize(){
 }
 
 requestAnimationFrame(update);
+document.onmouseup = e => {
+    if(link!==-1) return;
+    let mouseX = e.clientX/tw;
+    let mouseY = e.clientY/th;
+    if(links.includes(tiles[Math.floor(mouseY)][Math.floor(mouseX)])){
+        link = parseInt(tiles[Math.floor(mouseY)][Math.floor(mouseX)]);
+        requestAnimationFrame(showpage);
+    }
+}
+
+document.onmousemove = e => {
+    if(link!==-1) return;
+    let mouseX = e.clientX/tw;
+    let mouseY = e.clientY/th;
+    if(links.includes(tiles[Math.floor(mouseY)][Math.floor(mouseX)])){
+        hoverlink = parseInt(tiles[Math.floor(mouseY)][Math.floor(mouseX)]);
+        changebackground(hoverlink);
+    }
+    else if (hoverlink !== -1){
+        changebackground();
+    }
+}
+
 document.onkeydown = e => {
     if((e.key === ' ' || e.key === 'w')&&!wkd){
         wkd=true;

@@ -4,8 +4,14 @@ body{
 }
 .maincanvas{
     position: absolute;
-    z-index: 2;
+    z-index: 3;
 }
+
+.flagcanvas{
+    position: absolute;
+    z-index: 1;
+}
+
 .bgimg{
     position: absolute;
     z-index: 0;
@@ -14,7 +20,7 @@ body{
     position: absolute;
     width: 100vw;
     height: 100vh;
-    z-index: 3;
+    z-index: 4;
 }
 
 .page-bg-bt{
@@ -73,7 +79,7 @@ body{
 
 .text{
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     color: black;
     background-color: transparent;
     font-size: 2.5vmax;

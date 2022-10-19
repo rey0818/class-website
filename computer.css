@@ -45,13 +45,13 @@ body{
     background-color: transparent;
     color: black;
     position: absolute;
-    margin: 3vmax;
+    margin: 1vmax;
 }
 
 .page-ex-bt{
     position: absolute;
-    top: calc(10vh + 2vmax);
-    right: calc(10vw + 2vmax);
+    top: 10vh;
+    right: calc(10vw - 4vmax);
     width: 3vmax;
     height: 3vmax;
     background-color: rgb(170, 170, 170);
@@ -104,4 +104,10 @@ body{
 .teach{
     top: 13.2%;
     left: 85.2%;
+}
+
+.embedded{
+    width: calc(80vw - 2vmax);
+    height: calc(80vh - 2vmax);
+    position: absolute;
 }

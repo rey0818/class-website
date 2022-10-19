@@ -15,10 +15,10 @@ const pagehtml = document.createElement("div");
 pagehtml.classList.add("page");
 pagehtml.innerHTML = '<button class="page-bg-bt" onclick="hidepage()"></button><div class="page-content"><div class="page-text"></div></div><button class="page-ex-bt" onclick="hidepage()"><object data="x.svg" class="x-svg svg" id="x-svg"></object></button>';
 const pages = [
-    "Hello page 1",
-    "Hello page 2",
-    "Hello page 3",
-    "Hello page 4",
+    '<embed type="text/html" src="introduction.html" class="embedded">',
+    '<embed type="text/html" src="introduction.html" class="embedded">',
+    '<embed type="text/html" src="introduction.html" class="embedded">',
+    '<embed type="text/html" src="introduction.html" class="embedded">',
 ]
 const tiles = [
     ".............................................",

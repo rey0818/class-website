@@ -16,9 +16,9 @@ pagehtml.classList.add("page");
 pagehtml.innerHTML = '<button class="page-bg-bt" onclick="hidepage()"></button><div class="page-content"><div class="page-text"></div></div><button class="page-ex-bt" onclick="hidepage()"><object data="x.svg" class="x-svg svg" id="x-svg"></object></button>';
 const pages = [
     '<embed type="text/html" src="introduction.html" class="embedded">',
-    '<embed type="text/html" src="introduction.html" class="embedded">',
-    '<embed type="text/html" src="introduction.html" class="embedded">',
-    '<embed type="text/html" src="introduction.html" class="embedded">',
+    '<embed type="text/html" src="class-activities.html" class="embedded">',
+    '<embed type="text/html" src="class-cadres.html" class="embedded">',
+    '<embed type="text/html" src="teacher.html" class="embedded">',
 ]
 const tiles = [
     ".............................................",

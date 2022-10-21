@@ -46,6 +46,8 @@ body{
     color: black;
     position: absolute;
     margin: 1vmax;
+    font-size: 3vmax;
+    text-align: center;
 }
 
 .page-ex-bt{
@@ -110,4 +112,27 @@ body{
     width: calc(80vw - 2vmax);
     height: calc(80vh - 2vmax);
     position: absolute;
+}
+
+.homebutton{
+    position: absolute;
+    bottom: 2vmax;
+    right: 2vmax;
+    width: 5vmax;
+    height: 5vmax;
+    outline: 0;
+    border: 0.2vmax solid black;
+    border-radius: 1vmax;
+    z-index: 10;
+    font-weight: bold;
+    font-size: larger;
+    background-color: rgb(210, 210, 190);
+}
+
+.homebutton:hover{
+    background-color: rgb(140, 140, 140);
+}
+
+.homebutton:active{
+    background-color: rgb(100, 100, 100);
 }

@@ -9,8 +9,9 @@ backgroundcanvas.classList.add("bgimg");
 document.body.appendChild(backgroundcanvas);
 const ctx = canvas.getContext("2d");
 const bgctx = backgroundcanvas.getContext("2d");
+const flagctx = flagcanvas.getContext("2d");
 const solid = ['#', 'b'];
-const links = ['1', '2', '3', '4'];
+const links = ['1', '2', '3', '4', '5'];
 const pagehtml = document.createElement("div");
 pagehtml.classList.add("page");
 pagehtml.innerHTML = '<button class="page-bg-bt" onclick="hidepage()"></button><div class="page-content"><div class="page-text"></div></div><button class="page-ex-bt" onclick="hidepage()"><object data="x.svg" class="x-svg svg" id="x-svg"></object></button>';
@@ -19,6 +20,7 @@ const pages = [
     '<embed type="text/html" src="class-activities.html" class="embedded">',
     '<embed type="text/html" src="class-cadres.html" class="embedded">',
     '<embed type="text/html" src="teacher.html" class="embedded">',
+    '左、右、上鍵來控制人物，若想看班級介紹、活動、幹部和老師，把人物移到按鈕内即可觀看。'
 ]
 const tiles = [
     ".............................................",
@@ -52,7 +54,7 @@ const speed = 15;
 let dkd = false, akd = false, wkd = false;
 let inair = false;
 let tempx = false;
-let link = -1;
+let link = 5;
 let hoverlink = -1;
 let prevt = 0;
 let px = canvas.width/20, py = canvas.height/20*17, pw = tw * 1.5, ph = th * 1.5;
@@ -61,7 +63,13 @@ let player = new Image();
 player.src = "./Object.png";
 player.width = pw;
 player.height = ph;
-
+const frame1 = new Image(), frame2 = new Image();
+frame1.src = "./frame1.png";
+frame2.src = "./frame2.png";
+let bannerx = innerWidth;
+const bannery = 0;
+const bannerw = Math.floor(innerWidth/2);
+const bannerh = Math.floor(bannerw / frame1.naturalWidth * frame1.naturalHeight);
 ctx.fillStyle = "rgb(100, 100, 100)";
 function renderbackground(){
     bgctx.fillStyle = "rgb(100, 150, 255)";
@@ -108,7 +116,15 @@ function update(time){
     prevt = time;
     const rate = speed*dt/1000;
     ctx.clearRect(px, py, pw, ph);
-    
+    flagctx.clearRect(bannerx, bannery, bannerw, bannerh);
+    bannerx-=2;
+    if(bannerx+bannerw<0)bannerx = innerWidth;
+    if(Math.floor(time/500)%2===1){
+        flagctx.drawImage(frame1, bannerx, bannery, bannerw, bannerh);
+    }
+    else{
+        flagctx.drawImage(frame2, bannerx, bannery, bannerw, bannerh);
+    }
     px+=Math.round(pvx*rate);
     py+=Math.round(pvy*rate);
     let tempvy = pvy;
@@ -242,6 +258,8 @@ function resize(){
     canvas.height = innerHeight;
     backgroundcanvas.width = innerWidth;
     backgroundcanvas.height = innerHeight;
+    flagcanvas.width = innerWidth;
+    flagcanvas.height = innerHeight;
 }
 
 requestAnimationFrame(update);
@@ -269,7 +287,7 @@ document.onmousemove = e => {
 }
 
 document.onkeydown = e => {
-    if((e.key === ' ' || e.key === 'w')&&!wkd){
+    if((e.key === ' ' || e.key === 'w' || e.key === 'ArrowUp')&&!wkd){
         wkd=true;
     }
     else if((e.key === 'd' || e.key === 'ArrowRight')&&!dkd){
@@ -280,7 +298,7 @@ document.onkeydown = e => {
     }
 };
 document.onkeyup = e => {
-    if(e.key === ' ' || e.key === 'w'){
+    if(e.key === ' ' || e.key === 'w' || e.key === 'ArrowUp'){
         wkd = false;
     }
     if(e.key === 'd' || e.key === 'ArrowRight'){
@@ -290,4 +308,5 @@ document.onkeyup = e => {
         akd = false;
     }
 };
+showpage();
 document.onresize = resize;

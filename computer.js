@@ -20,7 +20,7 @@ const pages = [
     '<embed type="text/html" src="class-activities.html" class="embedded">',
     '<embed type="text/html" src="class-cadres.html" class="embedded">',
     '<embed type="text/html" src="teacher.html" class="embedded">',
-    '左、右、上鍵來控制人物，若想看班級介紹、活動、幹部和老師，把人物移到按鈕内即可觀看。'
+    '左、右、上鍵來控制人物，若想看班級介紹、活動、幹部和老師，把人物移到按鈕内即可觀看，或是直接點擊按鈕。'
 ]
 const tiles = [
     ".............................................",

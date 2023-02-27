@@ -3,9 +3,9 @@ const rvideo = document.querySelector(".reverse-video");
 rvideo.style.opacity = "0";
 video.style.opacity = "1";
 
-const playspeed = 2;
+const playspeed = 1;
 
-const tabs = [0, 4, 8, 12, 17.33333, 22.66667, 27.33333];
+const tabs = [0, 2, 4, 6, 8.66667, 11.33333, 13.66667];
 let currentTab = 0;
 video.load();
 rvideo.load();

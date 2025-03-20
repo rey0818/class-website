@@ -29,4 +29,4 @@ Click on the buttons to navigate to different sections of the application. The "
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
 
 ## Contact
-For any questions or concerns, please reach out to [rey.gaming.0818@gmail.com].
+For any questions or concerns, please reach out to [rey.gaming.0818@gmail.com] or [yp10851234@yphs.tp.edu.tw].

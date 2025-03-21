@@ -1,4 +1,6 @@
-const canvas = document.createElement("canvas");
+document.addEventListener("DOMContentLoaded", function() {
+    const canvas = document.createElement("canvas");
+
 canvas.classList.add("maincanvas");
 document.body.appendChild(canvas);
 const flagcanvas = document.createElement("canvas");
@@ -309,4 +311,4 @@ document.onkeyup = e => {
     }
 };
 showpage();
-document.onresize = resize;
+document.onresize = resize;}

@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const canvas = document.createElement("canvas");
+const canvas = document.createElement("canvas");
 
 canvas.classList.add("maincanvas");
 document.body.appendChild(canvas);
@@ -52,7 +51,7 @@ const tws = tiles[0].length;
 const ths = tiles.length;
 let tw = innerWidth / tws, th = innerHeight / ths; 
 
-const speed = 15;
+const speed = 40;
 let dkd = false, akd = false, wkd = false;
 let inair = false;
 let tempx = false;
@@ -174,7 +173,7 @@ function update(time){
     else inair=true;
     tempx = false;
     if(wkd&&!inair){
-        pvy=-50;
+        pvy=-80;
         inair = true;
         tempx = true;
     }
@@ -311,4 +310,3 @@ document.onkeyup = e => {
     }
 };
 showpage();
-document.onresize = resize;}
